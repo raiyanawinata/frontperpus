@@ -1,0 +1,28 @@
+a {
+    text-decoration: none;
+  }
+  
+  .App {
+    font-family: sans-serif;
+    text-align: center;
+    position: relative;
+   
+  }
+  ul {
+    list-style: none;
+  }
+  
+  .bw-gnb-header {
+    font-size: 14px;
+  }
+  
+  .bw-gnb-header .top {
+    width: 100%;
+    font-size: 16px;
+    background-color: #320B44;
+    box-shadow: 0 2px 4px 0 rgba(155, 155, 155, 0.5);
+    height: 60px;
+  }
+  
+  
+ 

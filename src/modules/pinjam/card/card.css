@@ -1,0 +1,64 @@
+
+.card {
+    background: #320B44;
+    box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.06);
+    border-radius: 5px;
+    background-color: #320B44 ;
+    
+  }
+  
+  .statValue {
+    color: #ffff;
+    font-size: 24px;
+    padding-left: -90px;
+    padding-top: 15px;
+  
+  }
+  .statName {
+    color: #AAAAAA;
+    font-size: 16px;
+  }
+  .growth {
+    color: #4BDE97;
+    font-size: 14px;
+  }
+  .lastMonth {
+    color: #BDBDBD;
+    font-size: 14px;
+  }
+  .up {
+    svg {
+      color: #4BDE97;;
+      width: 14px;
+      padding-right: 2px;
+    }
+    .growth {
+      color: #4BDE97;
+    }
+  }
+  .down {
+    svg {
+      color: #F26464;
+      width: 14px;
+      padding-right: 2px;
+    }
+    .growth {
+      color: #F26464;
+    }
+  }
+  .neutral {
+    svg {
+      color: #FFB648;
+      width: 14px;
+      padding-right: 2px;
+    }
+    .growth {
+      color: #FFB648;
+    }
+  }
+  @media screen and (max-width: 1340px) {
+    .card {
+      width: 48%;
+    }
+  }
+ 
