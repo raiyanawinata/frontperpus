@@ -1,80 +1,335 @@
 
+
+// import React, { Component } from "react";
+// import { Table, Form, Row, Col, Button } from "react-bootstrap";
+// import { FaArrowAltCircleRight, FaMap, FaPlusCircle, FaPlus, FaTrash } from "react-icons/fa";
+// import Popup from "reactjs-popup";
+// import "bootstrap/dist/css/bootstrap.min.css";
+// import "./tabelnav.css";
+// import { NavLink } from "react-router-dom";
+// import FormPinjam from "./FormPinjam";
+
+// const selectOptions = {
+//   0: "Belum di kembalikan",
+//   1: "Selesai"
+// };
+
+// const data = [
+//   {
+//     npm: "202310018",
+//     vehicle: "Raiyana Jan Winata",
+//     tglPinjam: "28-01-2023",
+//     nmBuku: "Belajar Java",
+//     jurusan: "Teknologi Informasi",
+//     performance: "1-02-2023",
+//     status: selectOptions[1]
+//   },
+//   // Data lainnya
+// ];
+
+// class TabelNav extends Component {
+//   constructor(props) {
+//     super(props);
+//     this.state = {
+//       searchNPM: "",
+//       sortField: "name",
+//       sortOrder: "asc",
+//       isFormPinjamOpen: false // state untuk mengatur tampilan pop-up
+//     };
+//     this.handleSearchChange = this.handleSearchChange.bind(this);
+//     this.handleClick = this.handleClick.bind(this);
+//   }
+
+//   handleSearchChange(event) {
+//     const searchNPM = event.target.value;
+//     this.setState({
+//       searchNPM
+//     });
+//   }
+
+//   handleClick() {
+//     this.setState((state) => ({
+//       isFormPinjamOpen: true // Mengubah state untuk menampilkan pop-up FormPinjam
+//     }));
+//   }
+
+//   handleSort = (field) => {
+//     this.setState((prevState) => ({
+//       sortField: field,
+//       sortOrder: prevState.sortOrder === "asc" ? "desc" : "asc"
+//     }));
+//   };
+
+//   handleDelete = (index) => {
+//     const updatedData = [...data];
+//     updatedData.splice(index, 1);
+//     // Update state or call an API to delete the data permanently
+//     console.log("Data deleted:", updatedData);
+//   };
+  
+
+//   render() {
+//     const { searchNPM, sortField, sortOrder, isFormPinjamOpen } = this.state;
+
+//     // Filter data berdasarkan NPM yang diinput
+//     const filteredData = data.filter((row) => row.npm.includes(searchNPM));
+
+//     // Sortir data berdasarkan field dan order yang dipilih
+//     const sortedData = [...filteredData].sort((a, b) => {
+//       const fieldValueA = a[sortField];
+//       const fieldValueB = b[sortField];
+//       if (fieldValueA < fieldValueB) {
+//         return sortOrder === "asc" ? -1 : 1;
+//       }
+//       if (fieldValueA > fieldValueB) {
+//         return sortOrder === "asc" ? 1 : -1;
+//       }
+//       return 0;
+//     });
+
+//     return (
+//       <React.Fragment>
+//         <div className="App">
+//           <h6 style={{ color: "white", fontFamily: "sans-serif", fontWeight: "bold" }}>
+//             Data Peminjaman Buku
+//           </h6>
+//           <Row>
+//             <Col xs={7}>
+//               <Form.Control
+//                 type="text"
+//                 placeholder="Cari data berdasarkan npm"
+//                 value={searchNPM}
+//                 onChange={this.handleSearchChange}
+//               />
+//             </Col>
+//             <Col xs={0} className="text-right">
+//               <Button
+//                 variant="light"
+//                 onClick={this.handleClick}
+//                 style={{
+//                   marginRight: "-100px",
+//                   height: "30px",
+//                   paddingTop: "2px",
+//                   borderRadius: "2px",
+//                   position: "relative",
+//                   marginTop: "15px"
+//                 }}
+//               >
+//                 <FaPlus className="mr-1" />
+//                 Tambahkan Data
+//               </Button>
+//             </Col>
+//           </Row>
+//           <br />
+
+//           <Table striped bordered hover responsive style={{ color: "#320B44", padding: "10px" }}>
+//             <thead>
+//               <tr>
+//                 <th>NPM</th>
+//                 <th>Nama</th>
+//                 <th>Tanggal Pinjam</th>
+//                 <th>Nama Buku</th>
+//                 <th>Jurusan</th>
+//                 <th>Performance</th>
+//                 <th>Status</th>
+//                 <th>Aksi</th>
+//               </tr>
+//             </thead>
+//             <tbody>
+//               {sortedData.map((row, index) => (
+//                 <tr key={index}>
+//                   <td>{row.npm}</td>
+//                   <td>{row.vehicle}</td>
+//                   <td>{row.tglPinjam}</td>
+//                   <td>{row.nmBuku}</td>
+//                   <td>{row.jurusan}</td>
+//                   <td>{row.performance}</td>
+//                   <td>{row.status}</td>
+//                   <td>
+//                     <Button
+//                       variant="danger"
+//                       size="sm"
+//                       onClick={() => this.handleDelete(index)}
+//                     >
+//                       <FaTrash />
+//                     </Button>
+//                   </td>
+//                 </tr>
+//               ))}
+//             </tbody>
+//           </Table>
+
+//           {/* Pop-up FormPinjam */}
+//           {isFormPinjamOpen && (
+//             <Popup
+//               open
+//               closeOnDocumentClick
+//               onClose={() => this.setState({ isFormPinjamOpen: false })}
+//             >
+//               <FormPinjam addNewData={this.props.addNewData} />
+//             </Popup>
+//           )}
+//         </div>
+//       </React.Fragment>
+//     );
+//   }
+// }
+
+// export default TabelNav;
+
+
+//INI YG KOSONG
+// import React, { Component } from "react";
+// import { Table, Form, Row, Col, Button } from "react-bootstrap";
+// import { FaArrowAltCircleRight, FaMap, FaPlusCircle, FaPlus, FaTrash } from "react-icons/fa";
+// import Popup from "reactjs-popup";
+// import "bootstrap/dist/css/bootstrap.min.css";
+// import "./tabelnav.css";
+// import { NavLink } from "react-router-dom";
+// import FormPinjam from "./FormPinjam";
+
+// const selectOptions = {
+//   0: "Belum di kembalikan",
+//   1: "Selesai"
+// };
+
+
+
+// class TabelNav extends Component {
+//   constructor(props) {
+//     super(props);
+//     this.state = {
+//       searchNPM: "",
+//       sortField: "name",
+//       sortOrder: "asc",
+//       isFormPinjamOpen: false // state untuk mengatur tampilan pop-up
+//     };
+//     this.handleSearchChange = this.handleSearchChange.bind(this);
+//     this.handleClick = this.handleClick.bind(this);
+//   }
+
+//   handleSearchChange(event) {
+//     const searchNPM = event.target.value;
+//     this.setState({
+//       searchNPM
+//     });
+//   }
+
+//   handleClick() {
+//     this.setState((state) => ({
+//       isFormPinjamOpen: true // Mengubah state untuk menampilkan pop-up FormPinjam
+//     }));
+//   }
+
+//   handleSort = (field) => {
+//     this.setState((prevState) => ({
+//       sortField: field,
+//       sortOrder: prevState.sortOrder === "asc" ? "desc" : "asc"
+//     }));
+//   };
+
+
+  
+
+//   render() {
+//     const { searchNPM, sortField, sortOrder, isFormPinjamOpen } = this.state;
+
+   
+
+//     return (
+//       <React.Fragment>
+//         <div className="App">
+//           <h6 style={{ color: "white", fontFamily: "sans-serif", fontWeight: "bold" }}>
+//             Data Peminjaman Buku
+//           </h6>
+//           <Row>
+//             <Col xs={7}>
+//               <Form.Control
+//                 type="text"
+//                 placeholder="Cari data berdasarkan npm"
+//                 value={searchNPM}
+//                 onChange={this.handleSearchChange}
+//               />
+//             </Col>
+//             <Col xs={0} className="text-right">
+//               <Button
+//                 variant="light"
+//                 onClick={this.handleClick}
+//                 style={{
+//                   marginRight: "-100px",
+//                   height: "30px",
+//                   paddingTop: "2px",
+//                   borderRadius: "2px",
+//                   position: "relative",
+//                   marginTop: "15px"
+//                 }}
+//               >
+//                 <FaPlus className="mr-1" />
+//                 Tambahkan Data
+//               </Button>
+//             </Col>
+//           </Row>
+//           <br />
+
+//           <Table striped bordered hover responsive style={{ color: "#320B44", padding: "10px" }}>
+//             <thead>
+//               <tr>
+//                 <th>NPM</th>
+//                 <th>Nama</th>
+//                 <th>Tanggal Pinjam</th>
+//                 <th>Nama Buku</th>
+//                 <th>Jurusan</th>
+//                 <th>Performance</th>
+//                 <th>Status</th>
+//                 <th>Aksi</th>
+//               </tr>
+//             </thead>
+//             <tbody>
+//             </tbody>
+//           </Table>
+
+//           {/* Pop-up FormPinjam */}
+//           {isFormPinjamOpen && (
+//             <Popup
+//               open
+//               closeOnDocumentClick
+//               onClose={() => this.setState({ isFormPinjamOpen: false })}
+//             >
+//               <FormPinjam addNewData={this.props.addNewData} />
+//             </Popup>
+//           )}
+//         </div>
+//       </React.Fragment>
+//     );
+//   }
+// }
+
+// export default TabelNav;
+
+//YG INI UDH BISA CUMA GADA WARNANYA
 import React, { Component } from "react";
 import { Table, Form, Row, Col, Button } from "react-bootstrap";
-import { FaArrowAltCircleRight, FaMap, FaPlusCircle,FaPlus } from "react-icons/fa";
+import { FaArrowAltCircleRight, FaMap, FaPlusCircle, FaPlus, FaTrash } from "react-icons/fa";
 import Popup from "reactjs-popup";
-// import "react-datepicker/dist/react-datepicker.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./tabelnav.css";
+import { NavLink } from "react-router-dom";
+import FormPinjam from "./FormPinjam";
 
 const selectOptions = {
   0: "Belum di kembalikan",
   1: "Selesai"
 };
 
-const data = [
-  {
-    name: "202310018",
-    vehicle: "Raiyana Jan Winata",
-    tglPinjam: "28-01-2023",
-    nmBuku: "Belajar Java",
-    jurusan: "Teknologi Informasi",
-    performance: "1-02-2023",
-    status: selectOptions[1]
-  },
-  {
-    name: "202310017",
-    vehicle: "Novi",
-    tglPinjam: "28-01-2023",
-    nmBuku: "Belajar Java",
-    jurusan: "Teknologi Informasi",
-    performance: "1-02-2023",
-    status: selectOptions[0]
-  },
-  {
-    name: "202310010",
-    vehicle: "Thesya",
-    tglPinjam: "28-01-2023",
-    nmBuku: "Belajar Java",
-    jurusan: "Teknologi Informasi",
-    performance: "1-02-2023",
-    status: selectOptions[1]
-  },
-  {
-    name: "202310019",
-    vehicle: "Mervin",
-    tglPinjam: "28-01-2023",
-    nmBuku: "Belajar Java",
-    jurusan: "Teknologi Informasi",
-    performance: "1-02-2023",
-    status: selectOptions[0]
-  },
-  {
-    name: "202310020",
-    vehicle: "Yudhis",
-    tglPinjam: "28-01-2023",
-    nmBuku: "Belajar Java",
-    jurusan: "Teknologi Informasi",
-    performance: "1-02-2023",
-    status: selectOptions[1]
-  },
-  {
-    name: "202310001",
-    vehicle: "Ilham",
-    tglPinjam: "28-01-2023",
-    nmBuku: "Belajar Java",
-    jurusan: "Teknologi Informasi",
-    performance: "1-02-2023",
-    status: selectOptions[1]
-  },
-]
 class TabelNav extends Component {
   constructor(props) {
     super(props);
     this.state = {
       searchNPM: "",
       sortField: "name",
-      sortOrder: "asc"
+      sortOrder: "asc",
+      isFormPinjamOpen: false, // state untuk mengatur tampilan pop-up
+      pinjamData: [] // state untuk menyimpan data peminjaman
     };
     this.handleSearchChange = this.handleSearchChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
@@ -88,44 +343,36 @@ class TabelNav extends Component {
   }
 
   handleClick() {
-    this.setState(state => ({
-      // set the state for icons
+    this.setState((state) => ({
+      isFormPinjamOpen: true // Mengubah state untuk menampilkan pop-up FormPinjam
     }));
-    console.log(this.state);
   }
 
-  handleSort = field => {
-    this.setState(prevState => ({
+  handleSort = (field) => {
+    this.setState((prevState) => ({
       sortField: field,
       sortOrder: prevState.sortOrder === "asc" ? "desc" : "asc"
     }));
   };
 
+  addNewData = (newData) => {
+    this.setState((prevState) => ({
+      pinjamData: [...prevState.pinjamData, newData],
+      isFormPinjamOpen: false // Menutup pop-up FormPinjam setelah menambahkan data
+    }));
+  };
+
   render() {
-    const { searchNPM, sortField, sortOrder } = this.state;
-
-    // Filter data berdasarkan NPM yang diinput
-    const filteredData = data.filter(row => row.name.includes(searchNPM));
-
-    // Sortir data berdasarkan field dan order yang dipilih
-    const sortedData = [...filteredData].sort((a, b) => {
-      const fieldValueA = a[sortField];
-      const fieldValueB = b[sortField];
-      if (fieldValueA < fieldValueB) {
-        return sortOrder === "asc" ? -1 : 1;
-      }
-      if (fieldValueA > fieldValueB) {
-        return sortOrder === "asc" ? 1 : -1;
-      }
-      return 0;
-    });
+    const { searchNPM, sortField, sortOrder, isFormPinjamOpen, pinjamData } = this.state;
 
     return (
       <React.Fragment>
         <div className="App">
-        <h6 style={{ color: "white", fontFamily: "sans-serif", fontWeight: "bold" }}>Data Peminjaman Buku</h6>
+          <h6 style={{ color: "white", fontFamily: "sans-serif", fontWeight: "bold" }}>
+            Data Peminjaman Buku
+          </h6>
           <Row>
-          <Col xs={7}>
+            <Col xs={7}>
               <Form.Control
                 type="text"
                 placeholder="Cari data berdasarkan npm"
@@ -133,58 +380,67 @@ class TabelNav extends Component {
                 onChange={this.handleSearchChange}
               />
             </Col>
-            <Col xs={0} className="text-right" >
-              <Button variant="light" onClick={this.handleClick} style={{marginRight:"-100px", height:"30px", paddingTop:"2px", borderRadius:"2px", position:"relative", marginTop:"15px"}}>
+            <Col xs={0} className="text-right">
+              <Button
+                variant="light"
+                onClick={this.handleClick}
+                style={{
+                  marginRight: "-100px",
+                  height: "30px",
+                  paddingTop: "2px",
+                  borderRadius: "2px",
+                  position: "relative",
+                  marginTop: "15px"
+                }}
+              >
                 <FaPlus className="mr-1" />
                 Tambahkan Data
               </Button>
             </Col>
           </Row>
-          <br/>
-          
+          <br />
 
-         
-          
-          <Table striped bordered hover responsive style={{ color: "#320B44", padding:"10px" }}>
+          <Table striped bordered hover responsive style={{ color: "#320B44", padding: "10px" }}>
             <thead>
               <tr>
-                <th className="cellWeight600" onClick={() => this.handleSort("name")}>
-                  NPM {sortField === "name" && <span>{sortOrder === "asc" ? "▲" : "▼"}</span>}
-                </th>
-                <th className="pointer" onClick={() => this.handleSort("vehicle")}>
-                  Nama {sortField === "vehicle" && <span>{sortOrder === "asc" ? "▲" : "▼"}</span>}
-                </th>
-                <th onClick={() => this.handleSort("tglPinjam")}>
-                  Tanggal Pinjam {sortField === "tglPinjam" && <span>{sortOrder === "asc" ? "▲" : "▼"}</span>}
-                </th>
-                <th onClick={() => this.handleSort("nmBuku")}>
-                  Nama Buku {sortField === "nmBuku" && <span>{sortOrder === "asc" ? "▲" : "▼"}</span>}
-                </th>
-                <th onClick={() => this.handleSort("jurusan")}>
-                  Jurusan {sortField === "jurusan" && <span>{sortOrder === "asc" ? "▲" : "▼"}</span>}
-                </th>
-                <th onClick={() => this.handleSort("performance")}>
-                  Tenggat Waktu {sortField === "performance" && <span>{sortOrder === "asc" ? "▲" : "▼"}</span>}
-                </th>
-                <th onClick={() => this.handleSort("status")}>
-                  Status {sortField === "status" && <span>{sortOrder === "asc" ? "▲" : "▼"}</span>}
-                </th>
+                <th>NPM</th>
+                <th>Nama</th>
+                <th>Tanggal Pinjam</th>
+                <th>Nama Buku</th>
+                <th>Jurusan</th>
+                <th>Performance</th>
+                <th>Status</th>
+                <th>Aksi</th>
               </tr>
             </thead>
             <tbody>
-              {sortedData.map((row, index) => (
+              {pinjamData.map((data, index) => (
                 <tr key={index}>
-                  <td>{row.name}</td>
-                  <td>{row.vehicle}</td>
-                  <td>{row.tglPinjam}</td>
-                  <td>{row.nmBuku}</td>
-                  <td>{row.jurusan}</td>
-                  <td>{row.performance}</td>
-                  <td>{row.status}</td>
+                  <td>{data.npm}</td>
+                  <td>{data.nama}</td>
+                  <td>{data.tglPinjam}</td>
+                  <td>{data.nmBuku}</td>
+                  <td>{data.jurusan}</td>
+                  <td>{data.performance}</td>
+                  {/* <td>{selectOptions[data.status]}</td>  */}
+                  <td>
+                    {/* Action buttons */}
+                  </td>
                 </tr>
               ))}
             </tbody>
           </Table>
+
+          {/* Pop-up FormPinjam */}
+          {isFormPinjamOpen && (
+            <Popup
+              open
+              closeOnDocumentClick
+              onClose={() => this.setState({ isFormPinjamOpen: false })}
+            >
+              <FormPinjam addNewData={this.addNewData} />
+            </Popup>
+          )}
         </div>
       </React.Fragment>
     );
@@ -192,6 +448,9 @@ class TabelNav extends Component {
 }
 
 export default TabelNav;
+
+
+
 
 
 

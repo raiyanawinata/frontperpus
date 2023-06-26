@@ -1,0 +1,176 @@
+/* 
+import React, { Component } from "react";
+import { Form, Button, Row, Col } from "react-bootstrap";
+import "./formP.css";
+import TabelNav from "./TabelNav";
+class FormPinjam extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      npm: "",
+      nama: "",
+      tglPinjam: "",
+      nmBuku: "",
+      jurusan: "",
+      performance: "",
+    };
+  }
+
+  handleChange = (event) => {
+    this.setState({ [event.target.name]: event.target.value });
+    if (event.target.name === "tglPinjam") {
+      const tglPinjam = new Date(event.target.value);
+      const tglTenggat = new Date(tglPinjam.getTime() + 7 * 24 * 60 * 60 * 1000);
+      const formattedTglTenggat = this.formatDate(tglTenggat);
+      this.setState({ performance: formattedTglTenggat });
+    }
+  };
+
+  handleSubmit = (event) => {
+    event.preventDefault();
+    // Lakukan aksi tambah data, misalnya memperbarui state atau mengirim permintaan API
+   const {npm,nama,tglPinjam, nmBuku, jurusan, performance} = this.state;
+    // Reset form setelah submit
+    const newData = {
+        npm,
+        nama,
+        tglPinjam,
+        nmBuku,
+        jurusan,
+        performance
+    };
+    this.props.addNewData(newData);
+    //reset form setelah submit
+    this.setState({
+        npm:"",
+        nama:"",
+        tglPinjam:"",
+        nmBuku:"",
+        jurusan:"",
+        performance
+    })
+  };
+
+  formatDate = (date) => {
+    const options = { day: "numeric", month: "numeric", year: "numeric" };
+    return new Intl.DateTimeFormat("en-GB", options).format(date);
+  };
+
+  render() {
+    const { npm, nama, tglPinjam, nmBuku, jurusan, performance } = this.state;
+
+    return (
+      <div className="container-2">
+        <h6 style={{ color: "black", fontFamily: "sans-serif", fontWeight: "bold" }}>Form Peminjaman Buku</h6>
+        <Form onSubmit={this.handleSubmit}>
+          <Form.Group as={Row} controlId="formNPM">
+            <Form.Label column sm={3} className="text-right">
+              NPM
+            </Form.Label>
+            <Col sm={9}>
+              <Form.Control
+                type="text"
+                name="npm"
+                value={npm}
+                onChange={this.handleChange}
+                required
+              />
+            </Col>
+          </Form.Group>
+
+          <Form.Group as={Row} controlId="formNama">
+            <Form.Label column sm={3} className="text-right">
+              Nama
+            </Form.Label>
+            <Col sm={9}>
+              <Form.Control
+                type="text"
+                name="nama"
+                value={nama}
+                onChange={this.handleChange}
+                required
+              />
+            </Col>
+          </Form.Group>
+
+          <Form.Group as={Row} controlId="formTglPinjam">
+            <Form.Label column sm={3} className="text-right">
+              Tanggal Pinjam
+            </Form.Label>
+            <Col sm={9}>
+              <Form.Control
+                type="date"
+                name="tglPinjam"
+                value={tglPinjam}
+                onChange={this.handleChange}
+                required
+              />
+            </Col>
+          </Form.Group>
+
+          <Form.Group as={Row} controlId="formNmBuku">
+            <Form.Label column sm={3} className="text-right">
+              Nama Buku
+            </Form.Label>
+            <Col sm={9}>
+              <Form.Control
+                type="text"
+                name="nmBuku"
+                value={nmBuku}
+                onChange={this.handleChange}
+                required
+              />
+            </Col>
+          </Form.Group>
+
+          <Form.Group as={Row} controlId="formJurusan">
+            <Form.Label column sm={3} className="text-right">
+              Jurusan
+            </Form.Label>
+            <Col sm={9}>
+              <Form.Control
+                type="text"
+                name="jurusan"
+                value={jurusan}
+                onChange={this.handleChange}
+                required
+              />
+            </Col>
+          </Form.Group>
+
+          <Form.Group as={Row} controlId="formPerformance">
+            <Form.Label column sm={3} className="text-right">
+              Tenggat Waktu
+            </Form.Label>
+            <Col sm={9}>
+              <Form.Control
+                type="text"
+                name="performance"
+                value={performance}
+                onChange={this.handleChange}
+                required
+              />
+            </Col>
+          </Form.Group>
+
+          <Form.Group as={Row}>
+            <Col sm={{ span: 9, offset: 3 }}>
+              <Button type="submit" variant="primary">
+                Simpan
+              </Button>
+            </Col>
+          </Form.Group>
+        </Form>
+      </div>
+    );
+  }
+}
+
+export default FormPinjam;
+
+
+
+
+
+
+ */
