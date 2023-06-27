@@ -10,7 +10,6 @@ import { NavLink } from "react-router-dom";
 import FormPinjam from "./FormPinjam";
 import axios from "axios";
 
-
 const selectOptions = {
   0: "Belum dikembalikan",
   1: "Sudah dikembalikan",
@@ -23,9 +22,9 @@ class TabelNav extends Component {
       searchQuery: "",
       sortField: "name",
       sortOrder: "asc",
-      isFormPinjamOpen: false, // state untuk mengatur tampilan pop-up
-      pinjamData: [], // state untuk menyimpan data peminjaman
-      selectedStatus: "", // state untuk menyimpan status yang dipilih
+      isFormPinjamOpen: false,
+      pinjamData: [],
+      selectedStatus: "",
     };
     this.handleSearchChange = this.handleSearchChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
@@ -40,7 +39,7 @@ class TabelNav extends Component {
 
   handleClick() {
     this.setState((state) => ({
-      isFormPinjamOpen: true, // Mengubah state untuk menampilkan pop-up FormPinjam
+      isFormPinjamOpen: true,
     }));
   }
 
@@ -54,7 +53,7 @@ class TabelNav extends Component {
   addNewData = (newData) => {
     this.setState((prevState) => ({
       pinjamData: [...prevState.pinjamData, newData],
-      isFormPinjamOpen: false, // Menutup pop-up FormPinjam setelah menambahkan data
+      isFormPinjamOpen: false,
     }));
   };
 
@@ -63,11 +62,9 @@ class TabelNav extends Component {
     if (confirmDelete) {
       const { pinjamData } = this.state;
       const dataToDelete = pinjamData[index];
-  
-      // Mengirim permintaan DELETE ke backend menggunakan Axios
+
       axios.delete(`http://localhost:4000/peminjaman/${dataToDelete.id}`)
         .then(() => {
-          // Menghapus data dari state pinjamData
           pinjamData.splice(index, 1);
           this.setState({ pinjamData });
         })
@@ -78,7 +75,13 @@ class TabelNav extends Component {
       console.log("Menghapus data dibatalkan");
     }
   };
-  
+
+  calculateTenggatWaktu = (tglPinjam) => {
+    const tglPinjamDate = new Date(tglPinjam);
+    const tenggatWaktuDate = new Date(tglPinjam);
+    tenggatWaktuDate.setDate(tglPinjamDate.getDate() + 14);
+    return tenggatWaktuDate.toLocaleDateString("en-US");
+  };
 
   filterData = () => {
     const { pinjamData, searchQuery } = this.state;
@@ -97,25 +100,35 @@ class TabelNav extends Component {
     const { pinjamData } = this.state;
     const newData = [...pinjamData];
     const tglPengembalian = event.target.value;
-
+  
     newData[index].tglPengembalian = tglPengembalian;
     newData[index].status = tglPengembalian ? 1 : 0;
-
+  
     this.setState({ pinjamData: newData });
+  
+    const { id } = newData[index];
+  
+    // Mengirim permintaan PUT ke backend menggunakan Axios untuk memperbarui data tanggal pengembalian
+    axios.put(`http://localhost:4000/peminjaman/${id}`, { tglPengembalian })
+      .then((response) => {
+        console.log("Data tanggal pengembalian berhasil diperbarui:", response.data);
+      })
+      .catch((error) => {
+        console.error("Terjadi kesalahan saat memperbarui data tanggal pengembalian:", error);
+      });
   };
+  
 
   componentDidMount() {
-    // Mengambil data peminjaman dari database
     axios.get("http://localhost:4000/peminjaman")
       .then((response) => {
-        // Mengupdate state pinjamData dengan data yang diterima
         this.setState({ pinjamData: response.data });
       })
       .catch((error) => {
         console.error(error);
       });
   }
-  
+
   render() {
     const { sortField, sortOrder, isFormPinjamOpen } = this.state;
     const filteredData = this.filterData();
@@ -163,6 +176,7 @@ class TabelNav extends Component {
                 <th>Nama Buku</th>
                 <th>Jurusan</th>
                 <th>Tanggal Pengembalian</th>
+                <th>Tenggat Waktu</th>
                 <th>Status</th>
                 <th>Aksi</th>
               </tr>
@@ -182,6 +196,7 @@ class TabelNav extends Component {
                       onChange={(event) => this.handlePengembalianChange(index, event)}
                     />
                   </td>
+                  <td>{this.calculateTenggatWaktu(data.tglPinjam)}</td>
                   <td>{selectOptions[data.status]}</td>
                   <td>
                     <FaTrash className="icon-delete" onClick={() => this.handleDelete(index)} />
@@ -191,7 +206,6 @@ class TabelNav extends Component {
             </tbody>
           </Table>
 
-          {/* Pop-up FormPinjam */}
           {isFormPinjamOpen && (
             <Popup
               open
@@ -210,7 +224,8 @@ class TabelNav extends Component {
 export default TabelNav;
 
 
-// import { Table, Form, Row, Col, Button } from "react-bootstrap";
+
+
 // import { FaArrowAltCircleRight, FaMap, FaPlusCircle, FaPlus, FaTrash } from "react-icons/fa";
 // import Popup from "reactjs-popup";
 // import "bootstrap/dist/css/bootstrap.min.css";

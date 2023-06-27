@@ -1,8 +1,7 @@
 
 
-//INI PERCOBAAN PERTAMA GAGAL
 import React, { Component } from "react";
-import { Form, Button, Row, Col } from "react-bootstrap";
+import { Form, Button, Row, Col, Modal } from "react-bootstrap";
 import "./formP.css";
 import axios from "axios";
 
@@ -15,7 +14,8 @@ class FormPinjam extends Component {
       tglPinjam: "",
       nmBuku: "",
       jurusan: "",
-      tglTenggat: "",
+      tenggatWaktu: "",
+      showModal:false,
     };
   }
 
@@ -23,15 +23,15 @@ class FormPinjam extends Component {
     this.setState({ [event.target.name]: event.target.value });
     if (event.target.name === "tglPinjam") {
       const tglPinjam = new Date(event.target.value);
-      const tglTenggat = new Date(tglPinjam.getTime() + 7 * 24 * 60 * 60 * 1000);
+      const tglTenggat = new Date(tglPinjam.getTime() + 14 * 24 * 60 * 60 * 1000);
       const formattedTglTenggat = this.formatDate(tglTenggat);
-      this.setState({ performance: formattedTglTenggat });
+      this.setState({ tenggatWaktu: formattedTglTenggat });
     }
   };
 
   handleSubmit = async (event) => {
     event.preventDefault();
-    const { npm, nama, tglPinjam, nmBuku, jurusan, tglTenggat } = this.state;
+    const { npm, nama, tglPinjam, nmBuku, jurusan, tenggatWaktu } = this.state;
 
     try {
       // Kirim permintaan POST ke backend menggunakan Axios
@@ -41,10 +41,16 @@ class FormPinjam extends Component {
         tglPinjam,
         nmBuku,
         jurusan,
-        tglTenggat,
+        tenggatWaktu,
       });
 
       console.log(response.data); // Response dari backend (data peminjaman baru)
+
+      // Tambahkan data baru ke dalam tabel menggunakan fungsi addNewData
+    this.props.addNewData(response.data);
+
+      //menampilkan modal
+      this.setState({showModal:true});
 
       // Reset form setelah submit
       this.setState({
@@ -53,12 +59,17 @@ class FormPinjam extends Component {
         tglPinjam: "",
         nmBuku: "",
         jurusan: "",
-        tglPinjam: "",
+        tenggatWaktu: "",
       });
     } catch (error) {
       console.error(error);
     }
   };
+
+    handleModalClose = ()=>{
+      //menyembunyikan modal
+      this.setState({showModal:false});
+    }
 
   formatDate = (date) => {
     const options = { day: "numeric", month: "numeric", year: "numeric" };
@@ -66,7 +77,7 @@ class FormPinjam extends Component {
   };
 
   render() {
-    const { npm, nama, tglPinjam, nmBuku, jurusan, tglTenggat } = this.state;
+    const { npm, nama, tglPinjam, nmBuku, jurusan, tenggatWaktu, showModal } = this.state;
 
     return (
       <div className="container-2">
@@ -155,7 +166,7 @@ class FormPinjam extends Component {
               <Form.Control
                 type="text"
                 name="tglTenggat"
-                value={tglTenggat}
+                value={tenggatWaktu}
                 onChange={this.handleChange}
                 required
               />
@@ -170,12 +181,30 @@ class FormPinjam extends Component {
             </Col>
           </Form.Group>
         </Form>
+
+        {/* Modal */}
+        <Modal show={showModal} onHide={this.handleModalClose}>
+          <Modal.Header closeButton>
+            <Modal.Title>Data Berhasil Ditambahkan</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <p>Data peminjaman berhasil ditambahkan.</p>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="primary" onClick={this.handleModalClose}>
+              Oke
+            </Button>
+          </Modal.Footer>
+        </Modal>
+
       </div>
     );
   }
 }
 
 export default FormPinjam;
+
+
 
 
 
