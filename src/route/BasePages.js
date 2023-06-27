@@ -4,6 +4,7 @@ import { Route, Routes } from 'react-router-dom'
 import Dashboard from '../modules/dash/Dashboard'
 import TabelNav from '../modules/pinjam/tabel/TabelNav'
 import Pinjam from '../modules/pinjam/Pinjam'
+import FormPinjam from '../modules/pinjam/tabel/FormPinjam'
 
 
 export default function BasePages() {
@@ -13,6 +14,7 @@ export default function BasePages() {
             <Route path='/dasboard' element={<Dashboard />} />
             <Route path='/koleksi-buku' element={<Dashboard/>} />
             <Route path='/data-peminjaman' element={<Pinjam/>} />
+            <Route path='/formPinjam' element={<FormPinjam/>}/>
             
                 
                 {/* <Route path="reels" element={<Reels />} />

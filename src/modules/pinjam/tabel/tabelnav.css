@@ -1,12 +1,32 @@
 /* body {
     background-color: #320B44;
   } */
+  .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+  }
+  
+  .pagination button {
+    margin: 0 5px;
+  }
+  
+  .pagination span {
+    margin: 0 10px;
+  }
+  
   
   .App {
     margin: 30px;
     background-color: #320B44;
-    padding-top: 10px;
-    width: 900px;
+    padding-top: 5px;
+    width: 1100px;
+    max-height: 500px;
+    margin-top: -10px;
+    margin-left: 5px;
+    overflow: scroll;
+
     
    
   }
