@@ -1,19 +1,20 @@
 
-   .container-2 {
- 
-    padding: 20px;
+
+  /* RESPONSIVE */
+  .container-2 {
+    padding: 10px;
     background-color: #ffff;
     border: 1px solid #320B44;
     border-radius: 5px;
-    width: 500px;
-  
-   
+    width: 300px;
+    margin: 0 auto;
   }
   
   .container-2 h6 {
     text-align: center;
-    font-size: 18px;
+    font-size: 16px;
     margin-bottom: 20px;
+    color: #320B44;
   }
   
   .container-2 .form-group {
@@ -24,11 +25,10 @@
   }
   
   .container-2 .form-group label {
-    flex: 0 0 30%;
+    flex: 0 0 80px;
     font-weight: bold;
     margin-right: 5px;
-    text-align: right;
-    color: #320B44;
+    text-align: left;
   }
   
   .container-2 .form-control {
@@ -42,6 +42,31 @@
     margin-top: 10px;
     width: 100%;
     background-color: #320B44;
+    color: white;
+    border: none;
+    align-self: center;
   }
   
+  @media screen and (max-width: 500px) {
+    .container-2 {
+      width: 100%;
+      padding: 10px;
+    }
+  
+    .container-2 .form-group {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .container-2 .form-group label {
+      margin-bottom: 5px;
+      text-align: left;
+      flex: initial;
+      width: 100%;
+    }
+  
+    .container-2 .btn-primary {
+      width: auto;
+    }
+  }
   

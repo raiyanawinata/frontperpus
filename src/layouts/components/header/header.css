@@ -1,50 +1,38 @@
-a {
-    text-decoration: none;
-  }
-  
-  .App {
-    font-family: sans-serif;
-    text-align: center;
-    position: relative;
-    min-height: 100%;
-  }
-  ul {
-    list-style: none;
-  }
-  
-  .bw-gnb-header {
-    font-size: 14px;
-  }
-  
-  .bw-gnb-header .top {
-    width: 100%;
-    font-size: 16px;
-    background-color: #320B44;
-    box-shadow: 0 2px 4px 0 rgba(155, 155, 155, 0.5);
-    height: 60px;
-  }
-  
-  .bw-gnb-header .top .logo {
-    float: left;
-    height: 5px;
-    margin-left: 27px;
-    margin-top: 10px;
-    
-  
-  }
-  
-  .bw-gnb-header .top .menu {
-    float: right;
-  }
-  
-  .bw-gnb-header .top .menu .menu-item {
-    margin: 0 25px;
-    line-height: 60px;
-    color: white;
-  }
-  
-  .bw-gnb-header .top .menu .hambuger {
-    display: none;
-  }
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
- 
+.header-brand {
+  display: flex;
+  align-items: center;
+}
+
+.header-nav {
+  margin-left: 20px;
+}
+
+.nav-list {
+  list-style: none;
+  display: flex;
+  /* background-color: white;
+  color: "#320B44";
+  border-color: "#320B44"; */
+  color: aqua;
+}
+
+.nav-link {
+  color: blue;
+  text-decoration: none;
+  margin-right: 10px;
+  padding: 5px;
+}
+
+.nav-link.active {
+  font-weight: bold;
+}
+
+.header-actions {
+  margin-left: 20px;
+}

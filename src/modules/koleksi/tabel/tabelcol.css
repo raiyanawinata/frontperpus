@@ -1,5 +1,5 @@
 
-  .pagination {
+.pagination {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -25,7 +25,9 @@
     margin-top: 160px;
     margin-left: 15px;
     overflow: scroll;
- 
+
+    
+   
   }
   
   table {
@@ -33,7 +35,6 @@
     
 
   }
-  
   
   .form-control {
     margin-top: 15px;
@@ -196,5 +197,3 @@
       font-size: 0.9rem;
     }
   } 
-
-  

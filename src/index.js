@@ -5,6 +5,8 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import AppRoute from './route/AppRoute';
+import FormCol from './modules/koleksi/form/FormCol';
+import StatisticsCard from './modules/pinjam/card/StatisticsCard';
 
 const { PUBLIC_URL } = process.env;
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -12,6 +14,7 @@ root.render(
   <React.StrictMode>
     <BrowserRouter basename={PUBLIC_URL}>
       <AppRoute/>
+      {/* <StatisticsCard/> */}
       {/* <App/> */}
     </BrowserRouter>
   </React.StrictMode>

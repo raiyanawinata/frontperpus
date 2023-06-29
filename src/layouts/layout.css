@@ -1,0 +1,26 @@
+#main-layout {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  .mt-20 {
+    margin-top: 20px;
+  }
+  
+  .py-10 {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  
+  @media (max-width: 768px) {
+    .mt-20 {
+      margin-top: 10px;
+    }
+  
+    .py-10 {
+      padding-top: 5px;
+      padding-bottom: 5px;
+    }
+  }
+  

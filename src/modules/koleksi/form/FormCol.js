@@ -1,47 +1,39 @@
-
-
 import React, { Component } from "react";
 import { Form, Button, Row, Col, Modal } from "react-bootstrap";
-import "./formP.css";
+import "./formC.css";
 import axios from "axios";
 
-class FormPinjam extends Component {
+class FormCol extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      npm: "",
-      nama: "",
-      tglPinjam: "",
+      idBuku: "",
       nmBuku: "",
-      jurusan: "",
-      tenggatWaktu: "",
+      penulis: "",
+      thnTerbit: "",
+      tglMasuk: "",
+      jumlahBuku: "",
+      noRak: "",
       showModal:false,
     };
   }
 
-  handleChange = (event) => {
-    this.setState({ [event.target.name]: event.target.value });
-    if (event.target.name === "tglPinjam") {
-      const tglPinjam = new Date(event.target.value);
-      const tglTenggat = new Date(tglPinjam.getTime() + 14 * 24 * 60 * 60 * 1000);
-      const formattedTglTenggat = this.formatDate(tglTenggat);
-      this.setState({ tenggatWaktu: formattedTglTenggat });
-    }
-  };
 
   handleSubmit = async (event) => {
     event.preventDefault();
-    const { npm, nama, tglPinjam, nmBuku, jurusan, tenggatWaktu } = this.state;
+    const { idBuku,nmBuku,penulis,thnTerbit,tglMasuk,jumlahBuku,noRak } = this.state;
 
     try {
       // Kirim permintaan POST ke backend menggunakan Axios
-      const response = await axios.post("http://localhost:4000/peminjaman", {
-        npm,
-        nama,
-        tglPinjam,
+      const response = await axios.post("http://localhost:4000/create/collection", {
+        idBuku,
         nmBuku,
-        jurusan,
-        tenggatWaktu,
+        penulis,
+        thnTerbit,
+        tglMasuk,
+        jumlahBuku,
+        noRak,
+        showModal:false,
       });
 
       console.log(response.data); // Response dari backend (data peminjaman baru)
@@ -54,12 +46,13 @@ class FormPinjam extends Component {
 
       // Reset form setelah submit
       this.setState({
-        npm: "",
-        nama: "",
-        tglPinjam: "",
-        nmBuku: "",
-        jurusan: "",
-        tenggatWaktu: "",
+       idBuku:"",
+       nmBuku:"",
+       penulis: "",
+       thnTerbit:"",
+       tglMasuk:"",
+       jumlahBuku:"",
+       noRak:"",
       });
     } catch (error) {
       console.error(error);
@@ -76,59 +69,37 @@ class FormPinjam extends Component {
     return new Intl.DateTimeFormat("en-GB", options).format(date);
   };
 
-  render() {
-    const { npm, nama, tglPinjam, nmBuku, jurusan, tenggatWaktu, showModal } = this.state;
+  handleChange = (event) => {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value,
+    });
+  };
+  
 
+  render() {
+    const { idBuku,nmBuku,penulis,thnTerbit,tglMasuk,jumlahBuku,noRak, showModal } = this.state;
+    
     return (
       <div className="container-2">
         <h6 style={{ color: "black", fontFamily: "sans-serif", fontWeight: "bold" }}>Form Peminjaman Buku</h6>
         <Form onSubmit={this.handleSubmit}>
-          <Form.Group as={Row} controlId="formNPM">
+          <Form.Group as={Row} controlId="formIdBuku">
             <Form.Label column sm={3} className="text-right">
-              NPM
+              Id Buku
             </Form.Label>
             <Col sm={9}>
               <Form.Control
                 type="text"
-                name="npm"
-                value={npm}
+                name="idBuku"
+                value={idBuku}
                 onChange={this.handleChange}
                 required
               />
             </Col>
           </Form.Group>
 
-          <Form.Group as={Row} controlId="formNama">
-            <Form.Label column sm={3} className="text-right">
-              Nama
-            </Form.Label>
-            <Col sm={9}>
-              <Form.Control
-                type="text"
-                name="nama"
-                value={nama}
-                onChange={this.handleChange}
-                required
-              />
-            </Col>
-          </Form.Group>
-
-          <Form.Group as={Row} controlId="formTglPinjam">
-            <Form.Label column sm={3} className="text-right">
-              Tanggal Pinjam
-            </Form.Label>
-            <Col sm={9}>
-              <Form.Control
-                type="date"
-                name="tglPinjam"
-                value={tglPinjam}
-                onChange={this.handleChange}
-                required
-              />
-            </Col>
-          </Form.Group>
-
-          <Form.Group as={Row} controlId="formNmBuku">
+          <Form.Group as={Row} controlId="formNamaBuku">
             <Form.Label column sm={3} className="text-right">
               Nama Buku
             </Form.Label>
@@ -143,30 +114,75 @@ class FormPinjam extends Component {
             </Col>
           </Form.Group>
 
-          <Form.Group as={Row} controlId="formJurusan">
+          <Form.Group as={Row} controlId="formPenulis">
             <Form.Label column sm={3} className="text-right">
-              Jurusan
+              Penulis Buku
             </Form.Label>
             <Col sm={9}>
               <Form.Control
                 type="text"
-                name="jurusan"
-                value={jurusan}
+                name="penulis"
+                value={penulis}
                 onChange={this.handleChange}
                 required
               />
             </Col>
           </Form.Group>
 
-          <Form.Group as={Row} controlId="formPerformance">
+          <Form.Group as={Row} controlId="formThTerbit">
             <Form.Label column sm={3} className="text-right">
-              Tenggat Waktu
+              Tahun Terbit
+            </Form.Label>
+            <Col sm={9}>
+              <Form.Control
+                type="date"
+                name="thnTerbit"
+                value={thnTerbit}
+                onChange={this.handleChange}
+                required
+              />
+            </Col>
+          </Form.Group>
+
+          <Form.Group as={Row} controlId="formTglMasuk">
+            <Form.Label column sm={3} className="text-right">
+              Tanggal Masuk Buku
+            </Form.Label>
+            <Col sm={9}>
+              <Form.Control
+                type="date"
+                name="tglMasuk"
+                value={tglMasuk}
+                onChange={this.handleChange}
+                required
+              />
+            </Col>
+          </Form.Group>
+
+          <Form.Group as={Row} controlId="formJumlahBuku">
+            <Form.Label column sm={3} className="text-right">
+              Jumlah Buku
             </Form.Label>
             <Col sm={9}>
               <Form.Control
                 type="text"
-                name="tglTenggat"
-                value={tenggatWaktu}
+                name="jumlahBuku"
+                value={jumlahBuku}
+                onChange={this.handleChange}
+                required
+              />
+            </Col>
+          </Form.Group>
+
+          <Form.Group as={Row} controlId="formNorak">
+            <Form.Label column sm={3} className="text-right">
+              No Rak Buku
+            </Form.Label>
+            <Col sm={9}>
+              <Form.Control
+                type="text"
+                name="noRak"
+                value={noRak}
                 onChange={this.handleChange}
                 required
               />
@@ -188,7 +204,7 @@ class FormPinjam extends Component {
             <Modal.Title>Data Berhasil Ditambahkan</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <p>Data peminjaman berhasil ditambahkan.</p>
+            <p>Data koleksi berhasil ditambahkan.</p>
           </Modal.Body>
           <Modal.Footer>
             <Button variant="primary" onClick={this.handleModalClose}>
@@ -202,11 +218,4 @@ class FormPinjam extends Component {
   }
 }
 
-export default FormPinjam;
-
-
-
-
-
-
-
+export default FormCol;

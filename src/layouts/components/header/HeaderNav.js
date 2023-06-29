@@ -1,10 +1,11 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import './header.css';
 
 export default function HeaderNav() {
   return (
-    <header className="header" style={{ backgroundColor: "#320B44" }}>
-      <a className="header-brand" href="#" style={{ color: "white", display: "flex", alignItems: "center" }}>
+    <header className="header" style={{backgroundColor:"white"}}>
+      <div className="header-brand">
         <img
           src={require("../../../assets/logoIbik.png")}
           alt=""
@@ -13,11 +14,42 @@ export default function HeaderNav() {
           className="d-inline-block align-top"
           style={{ marginLeft: "10px" }}
         />
-        <span style={{ marginLeft: "10px" }}>Sistem Informasi Perpustakaan</span>
-      </a>
-      <button className="btn btn-outline-success" type="submit" style={{backgroundColor:"white", color:"#320B44", borderColor:"#320B44"}}>
-        Logout
-      </button>
+        <span style={{ marginLeft: "10px", color:"#320B44" }}>Sistem Informasi Perpustakaan</span>
+      </div>
+      <nav className="header-nav">
+        <ul className="nav-list">
+          <li>
+            <NavLink
+              to="/data-peminjaman"
+              activeClassName="active"
+              className="nav-link"
+              style={{color:"#320B44"}}
+            >
+              Data Peminjaman
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/koleksi-buku"
+              activeClassName="active"
+              className="nav-link"
+              style={{color:"#320B44"}}
+            >
+              Koleksi Buku
+            </NavLink>
+          </li>
+          <li>
+          <NavLink
+          to="/logout"
+          activeClassName="active"
+          className="nav-link"
+          style={{color:"#320B44"}}
+        >
+          Logout
+        </NavLink>
+          </li>
+        </ul>
+      </nav>
     </header>
   );
 }

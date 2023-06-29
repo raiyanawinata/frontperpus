@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import TabelNav from '../pinjam/tabel/TabelNav'
 import StatisticsCard from '../pinjam/card/StatisticsCard'
+import TabelCol from '../koleksi/tabel/TabelCol'
 
 export default class Dashboard extends Component {
     render() {
@@ -10,13 +11,14 @@ export default class Dashboard extends Component {
 
                 <div className="mt-10">
                     <div className="row">
-                    <StatisticsCard/>
+                    {/* <StatisticsCard/> */}
                         <div className="col-lg-8" style={{marginLeft:"20px"}}>
-                        <TabelNav/>
+                        <TabelCol/>
+                        
                         </div>
                         <div className="col-lg-4">
                             
-                            
+                        <TabelNav/>  
                         </div>
                     </div>
                 </div>

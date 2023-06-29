@@ -1,6 +1,6 @@
 .container{
     display: flex;
-   
+    
   
 }
 .side {
@@ -10,7 +10,7 @@
     min-width: 100px;
     max-width: 253px;
     background-color: #320B44;
-    height: 100vh;
+    height: 85vh;
     margin-left: -160vh;
   
    
@@ -65,5 +65,5 @@
     .side .profile-card {
       display: none !important;
     }
-  }
-  
+  } 
+

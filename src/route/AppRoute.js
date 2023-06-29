@@ -8,8 +8,8 @@ export default function AppRoute() {
         <Routes>
             {/* <Route index element={<Navigate to='/dashboard' />} /> */}
             {/* <Route path="signin" element={<Signin />} /> */}
-            <Route index element={<Navigate to='/dashboard'/>}/>
-            <Route path='login' element={<Login/>}/>
+            <Route index element={<Navigate to='/login'/>}/>
+            <Route path='logout' element={<Login/>}/>
             <Route path="*" element={<Layouts> <BasePages/> </Layouts>} />
         </Routes>
     )
